@@ -79,22 +79,112 @@
         <div class="row">
 
             <div class="box">
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Vyapar-Sarthi</h2>
+        <p>om namkeen</p>
+        <p>Urban · Snack & Beverage Store</p>
+
+        <!-- Logout goes back to login -->
+        <a href="login.html" class="logout">Logout</a>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <h1>Recommendation Dashboard</h1>
+        <p class="sub">Enter one customer request and get AI-based suggestions</p>
+
+        <!-- Cards -->
+        <div class="cards">
+            <div class="card">
+                <p>Total Searches</p>
+                <h2>8</h2>
+            </div>
+
+            <div class="card">
+                <p>Rainy Context</p>
+                <h2>1</h2>
+            </div>
+
+            <div class="card">
+                <p>Top Segment</p>
+                <h2>working</h2>
+            </div>
+        </div>
+
+        <!-- Middle -->
+        <div class="row">
+
+            <div class="box">
+                <h3>Generate Recommendations</h3>
+
+                <p>Product</p>
+                <select>
+                    <option>Biscuits</option>
+                </select>
+
+                <p>Customer Type</p>
+                <select>
+                    <option>Regular</option>
+                </select>
+
+                <!--  -->
+                <!-- <div class="tags">
+                    <label><input type="checkbox"> Kids</label>
+                    <label><input type="checkbox"> Healthy</label>
+                    <label><input type="checkbox"> Quick</label>
+                    <label><input type="checkbox"> Premium</label>
+                    <label><input type="checkbox"> Snack</label>
+                    <label><input type="checkbox"> Daily Use</label>
+                </div> -->
+
+                <p>Budget</p>
+                <input type="text" placeholder="e.g. 80">
+
+                <!-- <label><input type="checkbox"> Raining now?</label> -->
+
+                <button class="btn">Get Recommendations</button>
+            </div>
+
+            <div class="box">
+                <h3>Recommendation Output</h3>
+                <p>No recommendations yet</p>
+            </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="row">
+
+            <div class="box">
                 <h3>Most Queried Products</h3>
                 <ul>
-                    <li>Instant Noodles — 4 searches</li>
-                    <li>Namkeen — 2 searches</li>
-                    <li>Biscuits — 1 searches</li>
-                    <li>Milk — 1 searches</li>
+                    <li>Instant Noodles — 4</li>
+                    <li>Namkeen — 2</li>
+                    <li>Biscuits — 1</li>
+                    <li>Milk — 1</li>
                 </ul>
             </div>
 
             <div class="box">
-                <h3>How this prototype works</h3>
+                <h3>How this works</h3>
                 <ul>
-                    <li>Association-based product pairing</li>
-                    <li>Location trend boosting</li>
-                    <li>Customer-segment personalization</li>
-                    <li>Budget and weather-aware ranking</li>
+                    <li>Product pairing</li>
+                    <li>Location trends</li>
+                    <li>Customer type logic</li>
+                    <li>Weather logic</li>
                 </ul>
             </div>
 
