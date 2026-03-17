@@ -1,39 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vyapar-saarthi</title>
+    <title>Login</title>
     <link rel="stylesheet" href="../static/style.css">
-
 </head>
+
 <body>
-    <div class="main-container">
-        <!-- LEFT-SIDE -->
-        <div class="left">
-            <div class="tag">Vyapar-saarthi for business</div>
-            <h1 class="h1">Vyapar-saarthi Recommendation System</h1>
-            <p class="descs">Welcome to our AI powered recommendation system vyapar-saarthi for local businesses to help shopkeepers to boost their engagement and sales .</p>
+
+<div class="login-wrapper">
+
+    <div class="login-container">
+
+        <!-- Left -->
+        <div class="login-left">
+            <p class="tag">AI for Local Businesses</p>
+
+            <h1>Vyapar-Sarthi AI Recommendation System</h1>
+
+            <p class="desc">
+                Help shopkeepers boost engagement and sales with real-time product recommendations
+                based on user behavior, preferences, budget, and location trends.
+            </p>
+
             <ul>
-                <li>It gives cross suggestion like tea->milk , bread ,biscuits</li>
-                <li>It is location aware as well as weather aware</li>
-                <li>It is easy to use every local businessman can use </li>
+                <li>Cross-sell suggestions like biscuits → tea, milk, snacks</li>
+                <li>Location-aware and season-aware recommendations</li>
+                <li>FastAPI backend with a ready dashboard prototype</li>
             </ul>
         </div>
-        <!-- RIGHT-SIDE -->
-         <div class="login-box">
-            <div class="tab">
-                <button class="login">Login</button>
-                <button class="active">Create Account</button>
+
+        <!-- Right -->
+        <div class="login-right">
+            
+            <div class="top-buttons">
+                <button class="small-btn active">Login</button>
+                <button class="small-btn">Create Account</button>
             </div>
 
-            <input type="username" placeholder="username">
-            <input type="password" placeholder="password">
+            <h2>Shopkeeper Login</h2>
 
-            <button class ="login-btn">Dashboard Login</button>
-         </div>
+            <form method="POST" action="/login">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit" class="btn">Login to Dashboard</button>
+            </form>
+
+        </div>
+
     </div>
-    
-    
+
+</div>
+
 </body>
 </html>
