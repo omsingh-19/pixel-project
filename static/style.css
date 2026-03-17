@@ -96,3 +96,115 @@ input, select {
     border: none;
     border-radius: 10px;
 }
+
+body{
+   margin: 0;
+   background: linear-gradient(135deg,#0f172a,#1e293b,#312e81);
+   color: white;
+   height: 100vh;
+   font-family: Arial, Helvetica, sans-serif;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+    
+}
+.main-container{
+   width: 80%;
+   background: rgba(255, 255, 255, 0.05);
+   border-radius: 20px;
+   padding: 40px;
+   display: flex;
+   justify-content:space-evenly ;
+   align-items: center;
+   backdrop-filter: blur(10px);
+}
+.left{
+   width: 55%;
+
+}
+.tag{
+   margin-bottom: 20px;
+   font: 14px;
+   background: #3d39dc;
+   display: inline-block;
+   padding: 8px;
+   border-radius: 15px;
+   
+}
+.h1{
+   font-size: 40px;
+   color: white;
+   margin-bottom: 60px;
+}
+.desc{
+   margin-bottom: 20px;
+   color: #d3d3d3;
+   font-size: 20px;
+}
+ul{
+   color: #d3d3d3;
+   line-height: 1.8;
+
+}
+   
+   /* LOGIN SIDE */
+   .login-box{
+      width: 35%;
+      background: rgba(255, 255, 255, 0.08);
+      
+      border-radius: 20px;
+      padding: 30px;
+
+
+   }
+   .tab{
+      margin-bottom: 30px;
+
+   }
+   .tab button{
+      padding: 8px;
+      border-radius: 15px;
+      border: none;
+      margin-right: 10px;
+      cursor: pointer;
+      
+      
+   }
+   .tab .active{
+      background-color: #6a5cff;
+      
+   }
+   
+   
+   .tab .login{
+      
+      background: #d3d3d3;
+   }
+  .login-box input{
+   width: 100%;
+   background-color: rgba(255, 255, 255, 0.1);
+   margin-bottom: 15px;
+   border-radius: 10px;
+   border: none;
+   padding: 12px;
+   color: white;
+   
+  }
+
+
+  .login-btn{
+  
+   
+   height: 30px;
+   border-radius: 15px;
+   border:none;
+   background: #6a5cff;
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+   margin-top: 10px;
+   margin-left: 10px;
+   color: white;
+  }
+
