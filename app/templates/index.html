@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
@@ -11,7 +11,6 @@
 
     <div class="login-container">
 
-        <!-- Left -->
         <div class="login-left">
             <p class="tag">AI for Local Businesses</p>
 
@@ -29,23 +28,45 @@
             </ul>
         </div>
 
-        <!-- Right -->
         <div class="login-right">
-            
             <div class="top-buttons">
-                <button class="small-btn active">Login</button>
-                <button class="small-btn">Create Account</button>
+                <a href="/?mode=login" class="small-btn {% if mode != 'signup' %}active{% endif %}">Login</a>
+                <a href="/?mode=signup" class="small-btn {% if mode == 'signup' %}active{% endif %}">Create Account</a>
             </div>
 
-            <h2>Shopkeeper Login</h2>
+            {% if error %}
+            <div class="message error-message">{{ error }}</div>
+            {% endif %}
 
-            <form method="POST" action="/login">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
+            {% if mode == 'signup' %}
+                <h2>Create Shopkeeper Account</h2>
 
-                <button type="submit" class="btn">Login to Dashboard</button>
-            </form>
+                <form method="POST" action="/signup">
+                    <input type="text" name="shop_name" placeholder="Shop name" required>
+                    <input type="text" name="owner_name" placeholder="Owner name" required>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="text" name="location" placeholder="Location (e.g. Urban or Rural)" required>
 
+                    <select name="shop_type" required>
+                        <option value="" disabled selected>Select shop type</option>
+                        <option value="minimart">Mini Mart</option>
+                        <option value="general_store">General Store</option>
+                        <option value="snack_beverage">Snack & Beverage Store</option>
+                    </select>
+
+                    <button type="submit" class="btn">Create Account</button>
+                </form>
+            {% else %}
+                <h2>Shopkeeper Login</h2>
+
+                <form method="POST" action="/login">
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+
+                    <button type="submit" class="btn">Login to Dashboard</button>
+                </form>
+            {% endif %}
         </div>
 
     </div>

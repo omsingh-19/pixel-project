@@ -100,11 +100,22 @@ def render_dashboard(request: Request, db: Session, user, result=None, selected=
 
 
 @app.get("/", response_class=HTMLResponse)
-def root(request: Request, db: Session = Depends(get_db)):
+def root(request: Request, mode: str = "login", db: Session = Depends(get_db)):
     user = current_user(request, db)
     if user:
         return RedirectResponse(url="/dashboard", status_code=302)
-    return templates.TemplateResponse("index.html", {"request": request, "error": None})
+
+    if mode not in {"login", "signup"}:
+        mode = "login"
+
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "error": None,
+            "mode": mode,
+        },
+    )
 
 
 @app.get("/dashboard", response_class=HTMLResponse)
@@ -130,7 +141,11 @@ def signup(
     if existing:
         return templates.TemplateResponse(
             "index.html",
-            {"request": request, "error": "Username already exists. Please choose another username."},
+            {
+                "request": request,
+                "error": "Username already exists. Please choose another username.",
+                "mode": "signup",
+            },
             status_code=400,
         )
 
@@ -162,7 +177,11 @@ def login(
     if not user or not verify_password(password, user.password_hash):
         return templates.TemplateResponse(
             "index.html",
-            {"request": request, "error": "Invalid username or password."},
+            {
+                "request": request,
+                "error": "Invalid username or password.",
+                "mode": "login",
+            },
             status_code=401,
         )
     request.session["user_id"] = user.id

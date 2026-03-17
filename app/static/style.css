@@ -207,3 +207,53 @@ input, select {
     border: none;
     cursor: pointer;
 }
+
+.small-btn {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.message {
+    margin: 12px 0 14px;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.error-message {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fecaca;
+}
+
+.login-right select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #1e293b;
+    color: white;
+}
+.recommendation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.recommendation-item {
+    background: #1e293b;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.recommendation-item h4 {
+    margin: 0 0 8px 0;
+}
+
+.recommendation-item p {
+    margin: 4px 0;
+    color: #cbd5e1;
+}

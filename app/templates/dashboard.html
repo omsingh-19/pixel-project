@@ -2,108 +2,115 @@
 <html>
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
 
 <div class="dashboard">
 
-    <!-- Sidebar -->
     <div class="sidebar">
         <h2>Vyapar-Sarthi</h2>
-        <p>om namkeen</p>
-        <p>Urban · Snack & Beverage Store</p>
+        <p><strong>{{ user.shop_name }}</strong></p>
+        <p>{{ user.location }} · {{ display_shop_type }}</p>
 
-        <!-- Logout goes back to login -->
-        <a href="login.html" class="logout">Logout</a>
+        <a href="/logout" class="logout">Logout</a>
     </div>
 
-    <!-- Content -->
     <div class="content">
 
         <h1>Recommendation Dashboard</h1>
-        <p class="sub">Enter one customer request and get AI-based suggestions</p>
+        <p class="sub">Select one product and generate related recommendations</p>
 
-        <!-- Cards -->
         <div class="cards">
             <div class="card">
                 <p>Total Searches</p>
-                <h2>8</h2>
+                <h2>{{ metrics.total_searches }}</h2>
             </div>
 
             <div class="card">
-                <p>Rainy Context</p>
-                <h2>1</h2>
+                <p>Unique Products Searched</p>
+                <h2>{{ metrics.unique_products_searched }}</h2>
             </div>
 
             <div class="card">
-                <p>Top Segment</p>
-                <h2>working</h2>
+                <p>Top Product</p>
+                <h2>{{ metrics.top_product }}</h2>
             </div>
         </div>
 
-        <!-- Middle -->
         <div class="row">
 
             <div class="box">
                 <h3>Generate Recommendations</h3>
 
-                <p>Product</p>
-                <select>
-                    <option>Biscuits</option>
-                </select>
+                <form method="POST" action="/recommend">
+                    <p>Product</p>
+                    <select name="product_id" required>
+                        <option value="" disabled {% if not selected %}selected{% endif %}>Select a product</option>
+                        {% for product in products %}
+                            <option value="{{ product.id }}"
+                                {% if selected and selected.product_id == product.id %}selected{% endif %}>
+                                {{ product.name }} — ₹{{ "%.0f"|format(product.base_price) }}
+                            </option>
+                        {% endfor %}
+                    </select>
 
-                <p>Customer Type</p>
-                <select>
-                    <option>Regular</option>
-                </select>
-
-                <!--  -->
-                <!-- <div class="tags">
-                    <label><input type="checkbox"> Kids</label>
-                    <label><input type="checkbox"> Healthy</label>
-                    <label><input type="checkbox"> Quick</label>
-                    <label><input type="checkbox"> Premium</label>
-                    <label><input type="checkbox"> Snack</label>
-                    <label><input type="checkbox"> Daily Use</label>
-                </div> -->
-
-                <p>Budget</p>
-                <input type="text" placeholder="e.g. 80">
-
-                <!-- <label><input type="checkbox"> Raining now?</label> -->
-
-                <button class="btn">Get Recommendations</button>
+                    <button type="submit" class="btn">Get Recommendations</button>
+                </form>
             </div>
 
             <div class="box">
                 <h3>Recommendation Output</h3>
-                <p>No recommendations yet</p>
+
+                {% if result %}
+                    <p><strong>Base Product:</strong> {{ result.base_product }}</p>
+                    <p>{{ result.explanation }}</p>
+
+                    {% if result.recommendations %}
+                        <div class="recommendation-list">
+                            {% for item in result.recommendations %}
+                                <div class="recommendation-item">
+                                    <h4>{{ item.name }}</h4>
+                                    <p>Category: {{ item.category }}</p>
+                                    <p>Price: ₹{{ "%.0f"|format(item.price) }}</p>
+                                    <p>Score: {{ item.score }}</p>
+                                    <p>{{ item.reason }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>No recommendations found for this product.</p>
+                    {% endif %}
+                {% else %}
+                    <p>No recommendations yet. Choose a product and click <strong>Get Recommendations</strong>.</p>
+                {% endif %}
             </div>
 
         </div>
 
-        <!-- Bottom -->
         <div class="row">
 
             <div class="box">
                 <h3>Most Queried Products</h3>
-                <ul>
-                    <li>Instant Noodles — 4</li>
-                    <li>Namkeen — 2</li>
-                    <li>Biscuits — 1</li>
-                    <li>Milk — 1</li>
-                </ul>
+
+                {% if metrics.top_products %}
+                    <ul>
+                        {% for name, count in metrics.top_products %}
+                            <li>{{ name }} — {{ count }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No search history yet.</p>
+                {% endif %}
             </div>
 
             <div class="box">
-                <h3>How this works</h3>
+                <h3>Available Inventory</h3>
                 <ul>
-                    <li>Product pairing</li>
-                    <li>Location trends</li>
-                    <li>Customer type logic</li>
-                    <li>Weather logic</li>
+                    {% for product in products %}
+                        <li>{{ product.name }} — {{ product.category }}</li>
+                    {% endfor %}
                 </ul>
             </div>
 
