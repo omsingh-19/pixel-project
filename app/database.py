@@ -1,11 +1,17 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base , sessionmaker
+from sqlalchemy.orm import sessionmaker, declarative_base
 from pathlib import Path
 
-CURRENT_PATH= Path(__file__).resolve().parent.parent
-DATABASE_PATH = CURRENT_PATH / 'data'/'vayapar_sarthi_db.db'
-SQLALCHEMY_DB_PATH = f'sqlite:///{DATABASE_PATH}'
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_DIR = BASE_DIR / "data"
+DATA_DIR.mkdir(exist_ok=True)
 
-engine = create_engine(SQLALCHEMY_DB_PATH, connect_args={"check_same_thread": False})
+DATABASE_URL = f"sqlite:///{DATA_DIR / 'pixel.db'}"
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
+)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
